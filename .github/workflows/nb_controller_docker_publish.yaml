@@ -18,7 +18,7 @@ on:
 
 env:
   DOCKER_USER: adysh97
-  IMG: ${{ env.DOCKER_USER }}/notebook-controller
+  IMG: adysh97/notebook-controller
 
 jobs:
   push_to_registry:
