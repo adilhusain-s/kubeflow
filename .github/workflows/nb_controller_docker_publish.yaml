@@ -1,5 +1,6 @@
 name: Build & Publish Notebook Controller Docker image
 on:
+  workflow_dispatch:
   push:
     branches:
       - master
@@ -15,30 +16,37 @@ on:
       - components/notebook-controller/**
       - components/common/**
 
+env:
+  DOCKER_USER: adysh97
+  IMG: ${{ DOCKER_USER }}/notebook-controller
+
 jobs:
   push_to_registry:
     name: Build & Push Docker image to Docker Hub
     runs-on: ubuntu-latest
     steps:
-    - name: Checkout
-      uses: actions/checkout@v3
+      - name: Checkout
+        uses: actions/checkout@v3
 
-    - name: Login to DockerHub
-      if: github.event_name == 'push'
-      uses: docker/login-action@v2
-      with:
-        username: kubeflownotebookswg
-        password: ${{ secrets.KUBEFLOWNOTEBOOKSWG_DOCKER_TOKEN }}
+      - name: Login to DockerHub
+        #if: github.event_name == 'push'
+        uses: docker/login-action@v2
+        with:
+          username: kubeflownotebookswg
+          password: ${{ secrets.KUBEFLOWNOTEBOOKSWG_DOCKER_TOKEN }}
 
-    - name: Run Notebook Controller build
-      run: |
-        cd components/notebook-controller
-        export IMG=kubeflownotebookswg/notebook-controller
-        make docker-build
+      - name: Run Notebook Controller build
+        run: |
+          cd components/notebook-controller
+          make docker-build
 
-    - name: Run Notebook Controller push
-      if: github.event_name == 'push'
-      run: |
-        cd components/notebook-controller
-        export IMG=kubeflownotebookswg/notebook-controller
-        make docker-push
+      - name: Run Notebook Controller push
+        #if: github.event_name == 'push'
+        run: |
+          cd components/notebook-controller
+          make docker-push
+
+      - name: Build multi-arch docker image
+        run: |
+          cd components/notebook-controller
+          make docker-build-multi-arch
