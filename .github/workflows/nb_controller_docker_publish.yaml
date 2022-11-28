@@ -18,7 +18,7 @@ on:
 
 env:
   DOCKER_USER: adysh97
-  IMG: ${{ DOCKER_USER }}/notebook-controller
+  IMG: ${{ env.DOCKER_USER }}/notebook-controller
 
 jobs:
   push_to_registry:
@@ -32,7 +32,7 @@ jobs:
         #if: github.event_name == 'push'
         uses: docker/login-action@v2
         with:
-          username: kubeflownotebookswg
+          username: ${{ env.DOCKER_USER }}
           password: ${{ secrets.KUBEFLOWNOTEBOOKSWG_DOCKER_TOKEN }}
 
       - name: Run Notebook Controller build
