@@ -38,13 +38,13 @@ jobs:
       - name: Run Notebook Controller build
         run: |
           cd components/notebook-controller
-          make docker-build
+          #make docker-build
 
       - name: Run Notebook Controller push
         #if: github.event_name == 'push'
         run: |
           cd components/notebook-controller
-          make docker-push
+          #make docker-push
 
       - name: Setup QEMU
         uses: docker/setup-qemu-action@v2
