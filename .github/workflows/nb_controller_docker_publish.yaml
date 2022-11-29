@@ -58,3 +58,8 @@ jobs:
         run: |
           cd components/notebook-controller
           make docker-build-multi-arch
+
+      - name: Build  and push multi-arch docker image
+        run: |
+          cd components/notebook-controller
+          make docker-build-push-multi-arch
