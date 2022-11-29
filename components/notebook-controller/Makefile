@@ -89,7 +89,7 @@ docker-push: ## Push docker image with the manager.
 ##@ Build
 .PHONY: docker-build-multi-arch
 docker-build-multi-arch: ## Build docker image with the manager.
-	cd .. && docker buildx build --platform linux/amd64,linux/ppc64le --load --tag ${IMG}:${TAG} -f ./notebook-controller/Dockerfile .
+	cd .. && docker buildx build --platform linux/amd64,linux/ppc64le  --tag ${IMG}:${TAG} -f ./notebook-controller/Dockerfile .
 
 
 .PHONY: image
