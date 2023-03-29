@@ -13,7 +13,7 @@ on:
 env:
   DOCKER_USER: adysh97
   IMG: kubeflownotebookswg/volumes-web-app
-  ARCH: linux/ppc64le,linux/amd64
+  ARCH: linux/ppc64le
 
 jobs:
   build-on-ppc64le:
