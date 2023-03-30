@@ -12,7 +12,7 @@ on:
 
 env:
   DOCKER_USER: adysh97
-  IMG: kubeflownotebookswg/volumes-web-app
+  IMG: adysh97/volumes-web-app
   ARCH: linux/ppc64le
 
 jobs:
