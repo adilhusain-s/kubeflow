@@ -42,6 +42,7 @@ jobs:
     - name: Build and push multi-arch docker image
       run: |
         cd components/crud-web-apps/volumes
+        export IMG=adysh97/volumes-web-app
         make docker-build-push-multi-arch
 
     - name: Build and push latest multi-arch docker image
