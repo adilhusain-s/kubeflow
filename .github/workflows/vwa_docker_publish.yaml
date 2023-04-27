@@ -18,7 +18,7 @@ env:
 jobs:
   build-on-ppc64le:
     name: Build & Push Docker image to Docker Hub using ppc64le 
-    runs-on: ubuntu-latest-ppc64le
+    runs-on: ubuntu-20.04-ppc64le
     steps:
     - name: Checkout
       uses: actions/checkout@v3
